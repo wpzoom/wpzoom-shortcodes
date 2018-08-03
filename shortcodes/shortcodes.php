@@ -432,11 +432,7 @@ $shortcodes_array = apply_filters( 'wpz_filter_shortcodes', array(
 	'tab'                => 'wpz_shortcode_tab_single',
 	'ilink'              => 'wpz_shortcode_ilink',
 	'unordered_list'     => 'wpz_shortcode_unorderedlist',
-	'ordered_list'       => 'wpz_shortcode_orderedlist',
-	'fullscreen'         => 'wpz_shortcode_fullscreen',
-	'wzslider'           => 'wzslider::init'
-
-
+	'ordered_list'       => 'wpz_shortcode_orderedlist'
 ) );
 
 /**

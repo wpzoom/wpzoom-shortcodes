@@ -15,7 +15,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-require_once plugin_dir_path( __FILE__ ) . 'shortcodes/wzslider.php';
-require_once plugin_dir_path( __FILE__ ) . 'shortcodes/fullscreen.php';
 require_once plugin_dir_path( __FILE__ ) . "shortcodes/shortcodes.php";
 require_once plugin_dir_path( __FILE__ ) . 'init.php';
