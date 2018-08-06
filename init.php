@@ -37,6 +37,9 @@ class WPZOOM_Shortcodes_Init {
 			add_filter( 'mce_buttons', array( &$this, 'filter_mce_buttons' ) );
 			add_filter( 'mce_external_plugins', array( &$this, 'filter_mce_external_plugins' ) );
 
+			// enqueue for gutenberg
+			add_action('enqueue_block_editor_assets', array($this, 'enqueue_thickbox'));
+
 			// Register Shortcodes dialog for AJAX requests.
 			add_action( 'wp_ajax_zoom_shortcodes_ajax_dialog', array( $this, 'ajax_dialog' ) );
 
@@ -57,6 +60,14 @@ class WPZOOM_Shortcodes_Init {
 
 			wp_enqueue_style( 'zoom-font-awesome', WPZOOM_Shortcodes_Init::$assets_path . '/css/font-awesome.min.css' );
 		}
+	}
+
+	/**
+	 * Enqueue thickbox
+	 */
+
+	public function enqueue_thickbox() {
+		wp_enqueue_style( 'thickbox' );
 	}
 
 	/**
