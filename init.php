@@ -3,12 +3,15 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
+if ( class_exists( 'WPZOOM_Shortcodes_Init' ) ){
+	error_log('EXISTSZ FROM PLUGGGINE');
+}
 
-if ( ! class_exists( 'WPZOOM_Shortcodes_Init' ) ) {
+if ( ! class_exists( 'WPZOOM_Shortcodes_Plugin_Init' ) ) {
 	/**
 	 * Shortcodes generator initializator.
 	 */
-	class WPZOOM_Shortcodes_Init {
+	class WPZOOM_Shortcodes_Plugin_Init {
 
 		/**
 		 * @var string Path to plugin file.
@@ -23,7 +26,7 @@ if ( ! class_exists( 'WPZOOM_Shortcodes_Init' ) ) {
 		public function __construct() {
 
 			$this->plugin_file                   = dirname( __FILE__ ) . '/social-icons-widget-by-wpzoom.php';
-			WPZOOM_Shortcodes_Init::$assets_path = plugin_dir_url( $this->plugin_file ) . 'assets';
+			WPZOOM_Shortcodes_Plugin_Init::$assets_path = plugin_dir_url( $this->plugin_file ) . 'assets';
 
 			// Register the necessary actions on `admin_init`.
 			add_action( 'admin_init', array( &$this, 'init' ) );
@@ -48,18 +51,18 @@ if ( ! class_exists( 'WPZOOM_Shortcodes_Init' ) ) {
 				add_action( 'wp_ajax_zoom_shortcodes_ajax_preview', array( $this, 'ajax_preview' ) );
 
 				// Register the colourpicker JavaScript.
-				wp_register_script( 'wpz-colourpicker', WPZOOM_Shortcodes_Init::$assets_path . '/js/colorpicker.js', array( 'jquery' ), '3.6', true ); // Loaded into the footer.
+				wp_register_script( 'wpz-colourpicker', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/js/colorpicker.js', array( 'jquery' ), '3.6', true ); // Loaded into the footer.
 				wp_enqueue_script( 'wpz-colourpicker' );
 
 				// Register the colourpicker CSS.
-				wp_register_style( 'wpz-colourpicker', WPZOOM_Shortcodes_Init::$assets_path . '/css/colorpicker.css' );
+				wp_register_style( 'wpz-colourpicker', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/colorpicker.css' );
 				wp_enqueue_style( 'wpz-colourpicker' );
 
 				// Register the custom CSS styles.
-				wp_register_style( 'wpz-shortcode-generator', WPZOOM_Shortcodes_Init::$assets_path . '/css/shortcode-generator.css' );
+				wp_register_style( 'wpz-shortcode-generator', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/shortcode-generator.css' );
 				wp_enqueue_style( 'wpz-shortcode-generator' );
 
-				wp_enqueue_style( 'zoom-font-awesome', WPZOOM_Shortcodes_Init::$assets_path . '/css/font-awesome.min.css' );
+				wp_enqueue_style( 'zoom-font-awesome', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/font-awesome.min.css' );
 			}
 		}
 
@@ -107,7 +110,7 @@ if ( ! class_exists( 'WPZOOM_Shortcodes_Init' ) ) {
 				$suffix = '.3.8';
 			}
 
-			$plugins['wpzoomShortcodes'] = WPZOOM_Shortcodes_Init::$assets_path . '/js/shortcode-generator/editor-plugin' . $suffix . '.js';
+			$plugins['wpzoomShortcodes'] = WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/js/shortcode-generator/editor-plugin' . $suffix . '.js';
 
 			return $plugins;
 		}
@@ -139,5 +142,5 @@ if ( ! class_exists( 'WPZOOM_Shortcodes_Init' ) ) {
 	/**
 	 * Fire ZOOM Shortcode Generator.
 	 */
-	$zoom_shortcode_generator = new WPZOOM_Shortcodes_Init();
+	$zoom_shortcode_generator = new WPZOOM_Shortcodes_Plugin_Init();
 }

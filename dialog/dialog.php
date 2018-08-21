@@ -1,5 +1,5 @@
 <?php
-if ( ! class_exists( 'WPZOOM_Shortcodes_Init' ) ) die();
+if ( ! class_exists( 'WPZOOM_Shortcodes_Plugin_Init' ) ) die();
 $support_shortcodes = true;
 ?>
 <!doctype html>
@@ -44,10 +44,10 @@ $support_shortcodes = true;
 </div>
 <div class="clear"></div>
 
-<script type="text/javascript">var shortcode_generator_url = '<?php echo WPZOOM_Shortcodes_Init::$assets_path . '/js/shortcode-generator/'; ?>';</script>
-<script type="text/javascript" src="<?php echo WPZOOM_Shortcodes_Init::$assets_path; ?>/js/shortcode-generator/column-control.js"></script>
-<script type="text/javascript" src="<?php echo WPZOOM_Shortcodes_Init::$assets_path; ?>/js/shortcode-generator/tab-control.js"></script>
-<script type="text/javascript" src="<?php echo WPZOOM_Shortcodes_Init::$assets_path; ?>/js/shortcode-generator/dialog.js"></script>
+<script type="text/javascript">var shortcode_generator_url = '<?php echo WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/js/shortcode-generator/'; ?>';</script>
+<script type="text/javascript" src="<?php echo WPZOOM_Shortcodes_Plugin_Init::$assets_path; ?>/js/shortcode-generator/column-control.js"></script>
+<script type="text/javascript" src="<?php echo WPZOOM_Shortcodes_Plugin_Init::$assets_path; ?>/js/shortcode-generator/tab-control.js"></script>
+<script type="text/javascript" src="<?php echo WPZOOM_Shortcodes_Plugin_Init::$assets_path; ?>/js/shortcode-generator/dialog.js"></script>
 <?php  }  else { ?>
 
 <div id="wpz-options-error">

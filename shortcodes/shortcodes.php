@@ -20,22 +20,22 @@ if ( ! function_exists( "wpz_remove_wpautop" ) ) {
 }
 
 // Enqueue shortcode JS file.
-add_action( 'wp_enqueue_scripts', 'wpz_enqueue_shortcode_css' );
+add_action( 'wp_enqueue_scripts', 'wpz_enqueue_shortcode_css', 20 );
 
-if ( ! function_exists( "wpz_enqueue_shortcode_css" ) ) {
+if ( !function_exists( "wpz_enqueue_shortcode_css" ) ) {
 // Include shortcodes .css file
 	function wpz_enqueue_shortcode_css() {
-		wp_enqueue_style( 'wpz-shortcodes', WPZOOM_Shortcodes_Init::$assets_path . '/css/shortcodes.css' );
-		wp_enqueue_style( 'zoom-font-awesome', WPZOOM_Shortcodes_Init::$assets_path . '/css/font-awesome.min.css' );
+		wp_enqueue_style( 'wpz-shortcodes', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/shortcodes.css' );
+		wp_enqueue_style( 'zoom-font-awesome', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/font-awesome.min.css' );
 	}
 }
 
 /*-----------------------------------------------------------------------------------*/
 /* Boxes - box
 /*-----------------------------------------------------------------------------------*/
-if ( ! function_exists( "wpz_shortcode_box" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_box" ) ) {
 
-	function wpz_shortcode_box( $atts, $content = null ) {
+	function wpz_plugin_shortcode_box( $atts, $content = null ) {
 		$defaults = array(
 			'type'   => 'normal',
 			'size'   => '',
@@ -58,9 +58,9 @@ if ( ! function_exists( "wpz_shortcode_box" ) ) {
 /*-----------------------------------------------------------------------------------*/
 /* Buttons - button
 /*-----------------------------------------------------------------------------------*/
-if ( ! function_exists( "wpz_shortcode_button" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_button" ) ) {
 
-	function wpz_shortcode_button( $atts, $content = null ) {
+	function wpz_plugin_shortcode_button( $atts, $content = null ) {
 		$defaults = array(
 			'size'     => '',
 			'style'    => '',
@@ -135,221 +135,220 @@ if ( ! function_exists( "wpz_shortcode_button" ) ) {
 /*-----------------------------------------------------------------------------------*/
 
 /* ============= Two Columns ============= */
-if ( ! function_exists( "wpz_shortcode_twocol_one" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_twocol_one" ) ) {
 
-	function wpz_shortcode_twocol_one( $atts, $content = null ) {
+	function wpz_plugin_shortcode_twocol_one( $atts, $content = null ) {
 		return '<div class="twocol-one">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_twocol_one_last" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_twocol_one_last" ) ) {
 
-	function wpz_shortcode_twocol_one_last( $atts, $content = null ) {
+	function wpz_plugin_shortcode_twocol_one_last( $atts, $content = null ) {
 		return '<div class="twocol-one last">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
 /* ============= Three Columns ============= */
 
-if ( ! function_exists( "wpz_shortcode_threecol_one" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_threecol_one" ) ) {
 
-	function wpz_shortcode_threecol_one( $atts, $content = null ) {
+	function wpz_plugin_shortcode_threecol_one( $atts, $content = null ) {
 		return '<div class="threecol-one">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_threecol_one_last" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_threecol_one_last" ) ) {
 
-	function wpz_shortcode_threecol_one_last( $atts, $content = null ) {
+	function wpz_plugin_shortcode_threecol_one_last( $atts, $content = null ) {
 		return '<div class="threecol-one last">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_threecol_two" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_threecol_two" ) ) {
 
-	function wpz_shortcode_threecol_two( $atts, $content = null ) {
+	function wpz_plugin_shortcode_threecol_two( $atts, $content = null ) {
 		return '<div class="threecol-two">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_threecol_two_last" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_threecol_two_last" ) ) {
 
-	function wpz_shortcode_threecol_two_last( $atts, $content = null ) {
+	function wpz_plugin_shortcode_threecol_two_last( $atts, $content = null ) {
 		return '<div class="threecol-two last">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
 /* ============= Four Columns ============= */
 
-if ( ! function_exists( "wpz_shortcode_fourcol_one" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_fourcol_one" ) ) {
 
-	function wpz_shortcode_fourcol_one( $atts, $content = null ) {
+	function wpz_plugin_shortcode_fourcol_one( $atts, $content = null ) {
 		return '<div class="fourcol-one">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
-if ( ! function_exists( "wpz_shortcode_fourcol_one_last" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_fourcol_one_last" ) ) {
 
-	function wpz_shortcode_fourcol_one_last( $atts, $content = null ) {
+	function wpz_plugin_shortcode_fourcol_one_last( $atts, $content = null ) {
 		return '<div class="fourcol-one last">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_fourcol_two" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_fourcol_two" ) ) {
 
-	function wpz_shortcode_fourcol_two( $atts, $content = null ) {
+	function wpz_plugin_shortcode_fourcol_two( $atts, $content = null ) {
 		return '<div class="fourcol-two">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_fourcol_two_last" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_fourcol_two_last" ) ) {
 
-	function wpz_shortcode_fourcol_two_last( $atts, $content = null ) {
+	function wpz_plugin_shortcode_fourcol_two_last( $atts, $content = null ) {
 		return '<div class="fourcol-two last">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_fourcol_three" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_fourcol_three" ) ) {
 
-	function wpz_shortcode_fourcol_three( $atts, $content = null ) {
+	function wpz_plugin_shortcode_fourcol_three( $atts, $content = null ) {
 		return '<div class="fourcol-three">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_fourcol_three_last" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_fourcol_three_last" ) ) {
 
-	function wpz_shortcode_fourcol_three_last( $atts, $content = null ) {
+	function wpz_plugin_shortcode_fourcol_three_last( $atts, $content = null ) {
 		return '<div class="fourcol-three last">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
 /* ============= Five Columns ============= */
 
-if ( ! function_exists( "wpz_shortcode_fivecol_one" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_fivecol_one" ) ) {
 
-	function wpz_shortcode_fivecol_one( $atts, $content = null ) {
+	function wpz_plugin_shortcode_fivecol_one( $atts, $content = null ) {
 		return '<div class="fivecol-one">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_fivecol_one_last" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_fivecol_one_last" ) ) {
 
-	function wpz_shortcode_fivecol_one_last( $atts, $content = null ) {
+	function wpz_plugin_shortcode_fivecol_one_last( $atts, $content = null ) {
 		return '<div class="fivecol-one last">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_fivecol_two" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_fivecol_two" ) ) {
 
-	function wpz_shortcode_fivecol_two( $atts, $content = null ) {
+	function wpz_plugin_shortcode_fivecol_two( $atts, $content = null ) {
 		return '<div class="fivecol-two">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_fivecol_two_last" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_fivecol_two_last" ) ) {
 
-	function wpz_shortcode_fivecol_two_last( $atts, $content = null ) {
+	function wpz_plugin_shortcode_fivecol_two_last( $atts, $content = null ) {
 		return '<div class="fivecol-two last">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_fivecol_three" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_fivecol_three" ) ) {
 
-	function wpz_shortcode_fivecol_three( $atts, $content = null ) {
+	function wpz_plugin_shortcode_fivecol_three( $atts, $content = null ) {
 		return '<div class="fivecol-three">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_fivecol_three_last" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_fivecol_three_last" ) ) {
 
-	function wpz_shortcode_fivecol_three_last( $atts, $content = null ) {
+	function wpz_plugin_shortcode_fivecol_three_last( $atts, $content = null ) {
 		return '<div class="fivecol-three last">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_fivecol_four" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_fivecol_four" ) ) {
 
-	function wpz_shortcode_fivecol_four( $atts, $content = null ) {
+	function wpz_plugin_shortcode_fivecol_four( $atts, $content = null ) {
 		return '<div class="fivecol-four">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_fivecol_four_last" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_fivecol_four_last" ) ) {
 
-	function wpz_shortcode_fivecol_four_last( $atts, $content = null ) {
+	function wpz_plugin_shortcode_fivecol_four_last( $atts, $content = null ) {
 		return '<div class="fivecol-four last">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
 /* ============= Six Columns ============= */
 
-if ( ! function_exists( "wpz_shortcode_sixcol_one" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_sixcol_one" ) ) {
 
-	function wpz_shortcode_sixcol_one( $atts, $content = null ) {
+	function wpz_plugin_shortcode_sixcol_one( $atts, $content = null ) {
 		return '<div class="sixcol-one">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_sixcol_one_last" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_sixcol_one_last" ) ) {
 
-	function wpz_shortcode_sixcol_one_last( $atts, $content = null ) {
+	function wpz_plugin_shortcode_sixcol_one_last( $atts, $content = null ) {
 		return '<div class="sixcol-one last">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_sixcol_two" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_sixcol_two" ) ) {
 
-	function wpz_shortcode_sixcol_two( $atts, $content = null ) {
+	function wpz_plugin_shortcode_sixcol_two( $atts, $content = null ) {
 		return '<div class="sixcol-two">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 
 }
 
-if ( ! function_exists( "wpz_shortcode_sixcol_two_last" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_sixcol_two_last" ) ) {
 
-	function wpz_shortcode_sixcol_two_last( $atts, $content = null ) {
+	function wpz_plugin_shortcode_sixcol_two_last( $atts, $content = null ) {
 		return '<div class="sixcol-two last">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_sixcol_three" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_sixcol_three" ) ) {
 
-	function wpz_shortcode_sixcol_three( $atts, $content = null ) {
+	function wpz_plugin_shortcode_sixcol_three( $atts, $content = null ) {
 		return '<div class="sixcol-three">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_sixcol_three_last" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_sixcol_three_last" ) ) {
 
-	function wpz_shortcode_sixcol_three_last( $atts, $content = null ) {
+	function wpz_plugin_shortcode_sixcol_three_last( $atts, $content = null ) {
 		return '<div class="sixcol-three last">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_sixcol_four" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_sixcol_four" ) ) {
 
-	function wpz_shortcode_sixcol_four( $atts, $content = null ) {
+	function wpz_plugin_shortcode_sixcol_four( $atts, $content = null ) {
 		return '<div class="sixcol-four">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_sixcol_four_last" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_sixcol_four_last" ) ) {
 
-
-	function wpz_shortcode_sixcol_four_last( $atts, $content = null ) {
+	function wpz_plugin_shortcode_sixcol_four_last( $atts, $content = null ) {
 		return '<div class="sixcol-four last">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_sixcol_five" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_sixcol_five" ) ) {
 
-	function wpz_shortcode_sixcol_five( $atts, $content = null ) {
+	function wpz_plugin_shortcode_sixcol_five( $atts, $content = null ) {
 		return '<div class="sixcol-five">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
 
-if ( ! function_exists( "wpz_shortcode_sixcol_five_last" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_sixcol_five_last" ) ) {
 
-	function wpz_shortcode_sixcol_five_last( $atts, $content = null ) {
+	function wpz_plugin_shortcode_sixcol_five_last( $atts, $content = null ) {
 		return '<div class="sixcol-five last">' . wpz_remove_wpautop( $content ) . '</div>';
 	}
 }
@@ -358,9 +357,9 @@ if ( ! function_exists( "wpz_shortcode_sixcol_five_last" ) ) {
 /* Tabs - [tabs][/tabs]
 /*-----------------------------------------------------------------------------------*/
 
-if ( ! function_exists( "wpz_shortcode_tabs" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_tabs" ) ) {
 
-	function wpz_shortcode_tabs( $atts, $content = null ) {
+	function wpz_plugin_shortcode_tabs( $atts, $content = null ) {
 		if ( ! defined( 'WPZ_SHORTCODE_TABS_JS' ) ) {
 			define( 'WPZ_SHORTCODE_TABS_JS', true );
 		}
@@ -415,9 +414,9 @@ if ( ! function_exists( "wpz_shortcode_tabs" ) ) {
 /* A Single Tab - [tab title="The title goes here"][/tab]
 /*-----------------------------------------------------------------------------------*/
 
-if ( ! function_exists( "wpz_shortcode_tab_single" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_tab_single" ) ) {
 
-	function wpz_shortcode_tab_single( $atts, $content = null ) {
+	function wpz_plugin_shortcode_tab_single( $atts, $content = null ) {
 		$defaults = array( 'title' => 'Tab' );
 
 		extract( shortcode_atts( $defaults, $atts ) );
@@ -433,21 +432,21 @@ if ( ! function_exists( "wpz_shortcode_tab_single" ) ) {
 }
 
 
-if ( ! function_exists( "wpz_shortcode_tabs_register_js" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_tabs_register_js" ) ) {
 
-	function wpz_shortcode_tabs_register_js() {
-		wp_register_script( 'wpz-shortcode-tabs', WPZOOM_Shortcodes_Init::$assets_path . '/js/shortcode-tabs.js', array(
+	function wpz_plugin_shortcode_tabs_register_js() {
+		wp_register_script( 'wpz-shortcode-tabs', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/js/shortcode-tabs.js', array(
 			'jquery',
 			'jquery-ui-tabs'
 		), '20140529', true );
 	}
 }
 
-add_action( 'init', 'wpz_shortcode_tabs_register_js' );
+add_action( 'init', 'wpz_plugin_shortcode_tabs_register_js' );
 
-if ( ! function_exists( "wpz_shortcode_tabs_print_js" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_tabs_print_js" ) ) {
 
-	function wpz_shortcode_tabs_print_js() {
+	function wpz_plugin_shortcode_tabs_print_js() {
 		if ( ! defined( 'WPZ_SHORTCODE_TABS_JS' ) ) {
 			return;
 		}
@@ -456,15 +455,15 @@ if ( ! function_exists( "wpz_shortcode_tabs_print_js" ) ) {
 	}
 }
 
-add_action( 'wp_footer', 'wpz_shortcode_tabs_print_js' );
+add_action( 'wp_footer', 'wpz_plugin_shortcode_tabs_print_js' );
 
 /*-----------------------------------------------------------------------------------*/
 /* Icon links - ilink
 /*-----------------------------------------------------------------------------------*/
 
-if ( ! function_exists( "wpz_shortcode_ilink" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_ilink" ) ) {
 
-	function wpz_shortcode_ilink( $atts, $content = null ) {
+	function wpz_plugin_shortcode_ilink( $atts, $content = null ) {
 		extract( shortcode_atts( array( 'style' => 'info', 'url' => '', 'icon' => '' ), $atts ) );
 
 		$custom_icon = '';
@@ -480,9 +479,9 @@ if ( ! function_exists( "wpz_shortcode_ilink" ) ) {
 /* List Styles - Unordered List - [unordered_list style=""][/unordered_list]
 /*-----------------------------------------------------------------------------------*/
 
-if ( ! function_exists( "wpz_shortcode_unorderedlist" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_unorderedlist" ) ) {
 
-	function wpz_shortcode_unorderedlist( $atts, $content = null ) {
+	function wpz_plugin_shortcode_unorderedlist( $atts, $content = null ) {
 
 		$defaults = array( 'style' => 'default' );
 
@@ -490,16 +489,16 @@ if ( ! function_exists( "wpz_shortcode_unorderedlist" ) ) {
 
 		return '<div class="shortcode-unorderedlist ' . $style . '">' . do_shortcode( $content ) . '</div>' . "\n";
 
-	} // End wpz_shortcode_unorderedlist()
+	} // End wpz_plugin_shortcode_unorderedlist()
 }
 
 /*-----------------------------------------------------------------------------------*/
 /* List Styles - Ordered List - [ordered_list style=""][/ordered_list]
 /*-----------------------------------------------------------------------------------*/
 
-if ( ! function_exists( "wpz_shortcode_orderedlist" ) ) {
+if ( ! function_exists( "wpz_plugin_shortcode_orderedlist" ) ) {
 
-	function wpz_shortcode_orderedlist( $atts, $content = null ) {
+	function wpz_plugin_shortcode_orderedlist( $atts, $content = null ) {
 
 		$defaults = array( 'style' => 'default' );
 
@@ -507,50 +506,51 @@ if ( ! function_exists( "wpz_shortcode_orderedlist" ) ) {
 
 		return '<div class="shortcode-orderedlist ' . $style . '">' . do_shortcode( $content ) . '</div>' . "\n";
 
-	} // End wpz_shortcode_orderedlist()
+	} // End wpz_plugin_shortcode_orderedlist()
 }
 
 /**
  * Array of shortcodes that can be filtered.
  */
 $shortcodes_array = apply_filters( 'wpz_filter_shortcodes', array(
-	'box'                => 'wpz_shortcode_box',
-	'button'             => 'wpz_shortcode_button',
-	'twocol_one'         => 'wpz_shortcode_twocol_one',
-	'twocol_one_last'    => 'wpz_shortcode_twocol_one_last',
-	'threecol_one'       => 'wpz_shortcode_threecol_one',
-	'threecol_one_last'  => 'wpz_shortcode_threecol_one_last',
-	'threecol_two'       => 'wpz_shortcode_threecol_two',
-	'threecol_two_last'  => 'wpz_shortcode_threecol_two_last',
-	'fourcol_one'        => 'wpz_shortcode_fourcol_one',
-	'fourcol_one_last'   => 'wpz_shortcode_fourcol_one_last',
-	'fourcol_two'        => 'wpz_shortcode_fourcol_two',
-	'fourcol_two_last'   => 'wpz_shortcode_fourcol_two_last',
-	'fourcol_three'      => 'wpz_shortcode_fourcol_three',
-	'fourcol_three_last' => 'wpz_shortcode_fourcol_three_last',
-	'fivecol_one'        => 'wpz_shortcode_fivecol_one',
-	'fivecol_one_last'   => 'wpz_shortcode_fivecol_one_last',
-	'fivecol_two'        => 'wpz_shortcode_fivecol_two',
-	'fivecol_two_last'   => 'wpz_shortcode_fivecol_two_last',
-	'fivecol_three'      => 'wpz_shortcode_fivecol_three',
-	'fivecol_three_last' => 'wpz_shortcode_fivecol_three_last',
-	'fivecol_four'       => 'wpz_shortcode_fivecol_four',
-	'fivecol_four_last'  => 'wpz_shortcode_fivecol_four_last',
-	'sixcol_one'         => 'wpz_shortcode_sixcol_one',
-	'sixcol_one_last'    => 'wpz_shortcode_sixcol_one_last',
-	'sixcol_two'         => 'wpz_shortcode_sixcol_two',
-	'sixcol_two_last'    => 'wpz_shortcode_sixcol_two_last',
-	'sixcol_three'       => 'wpz_shortcode_sixcol_three',
-	'sixcol_three_last'  => 'wpz_shortcode_sixcol_three_last',
-	'sixcol_four'        => 'wpz_shortcode_sixcol_four',
-	'sixcol_four_last'   => 'wpz_shortcode_sixcol_four_last',
-	'sixcol_five'        => 'wpz_shortcode_sixcol_five',
-	'sixcol_five_last'   => 'wpz_shortcode_sixcol_five_last',
-	'tabs'               => 'wpz_shortcode_tabs',
-	'tab'                => 'wpz_shortcode_tab_single',
-	'ilink'              => 'wpz_shortcode_ilink',
-	'unordered_list'     => 'wpz_shortcode_unorderedlist',
-	'ordered_list'       => 'wpz_shortcode_orderedlist'
+	'box'                => 'wpz_plugin_shortcode_box',
+	'button'             => 'wpz_plugin_shortcode_button',
+	'twocol_one'         => 'wpz_plugin_shortcode_twocol_one',
+	'twocol_one_last'    => 'wpz_plugin_shortcode_twocol_one_last',
+	'threecol_one'       => 'wpz_plugin_shortcode_threecol_one',
+	'threecol_one_last'  => 'wpz_plugin_shortcode_threecol_one_last',
+	'threecol_two'       => 'wpz_plugin_shortcode_threecol_two',
+	'threecol_two_last'  => 'wpz_plugin_shortcode_threecol_two_last',
+	'fourcol_one'        => 'wpz_plugin_shortcode_fourcol_one',
+	'fourcol_one_last'   => 'wpz_plugin_shortcode_fourcol_one_last',
+	'fourcol_two'        => 'wpz_plugin_shortcode_fourcol_two',
+	'fourcol_two_last'   => 'wpz_plugin_shortcode_fourcol_two_last',
+	'fourcol_three'      => 'wpz_plugin_shortcode_fourcol_three',
+	'fourcol_three_last' => 'wpz_plugin_shortcode_fourcol_three_last',
+	'fivecol_one'        => 'wpz_plugin_shortcode_fivecol_one',
+	'fivecol_one_last'   => 'wpz_plugin_shortcode_fivecol_one_last',
+	'fivecol_two'        => 'wpz_plugin_shortcode_fivecol_two',
+	'fivecol_two_last'   => 'wpz_plugin_shortcode_fivecol_two_last',
+	'fivecol_three'      => 'wpz_plugin_shortcode_fivecol_three',
+	'fivecol_three_last' => 'wpz_plugin_shortcode_fivecol_three_last',
+	'fivecol_four'       => 'wpz_plugin_shortcode_fivecol_four',
+	'fivecol_four_last'  => 'wpz_plugin_shortcode_fivecol_four_last',
+	'sixcol_one'         => 'wpz_plugin_shortcode_sixcol_one',
+	'sixcol_one_last'    => 'wpz_plugin_shortcode_sixcol_one_last',
+	'sixcol_two'         => 'wpz_plugin_shortcode_sixcol_two',
+	'sixcol_two_last'    => 'wpz_plugin_shortcode_sixcol_two_last',
+	'sixcol_three'       => 'wpz_plugin_shortcode_sixcol_three',
+	'sixcol_three_last'  => 'wpz_plugin_shortcode_sixcol_three_last',
+	'sixcol_four'        => 'wpz_plugin_shortcode_sixcol_four',
+	'sixcol_four_last'   => 'wpz_plugin_shortcode_sixcol_four_last',
+	'sixcol_five'        => 'wpz_plugin_shortcode_sixcol_five',
+	'sixcol_five_last'   => 'wpz_plugin_shortcode_sixcol_five_last',
+	'tabs'               => 'wpz_plugin_shortcode_tabs',
+	'tab'                => 'wpz_plugin_shortcode_tab_single',
+	'ilink'              => 'wpz_plugin_shortcode_ilink',
+	'unordered_list'     => 'wpz_plugin_shortcode_unorderedlist',
+	'ordered_list'       => 'wpz_plugin_shortcode_orderedlist',
+	'wzslider'           => 'wpz_plugin_wzslider::init'
 ) );
 
 /**

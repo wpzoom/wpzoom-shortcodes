@@ -1,6 +1,6 @@
 <?php
 if (
-    ! class_exists( 'WPZOOM_Shortcodes_Init' )
+    ! class_exists( 'WPZOOM_Shortcodes_Plugin_Init' )
  || ! current_user_can( 'edit_posts' )
  || ! isset( $_GET['shortcode'] )
 ) {
@@ -41,8 +41,8 @@ if (
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js" ></script>
     <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_uri(); ?>" media="all" />
-    <link rel="stylesheet" type="text/css" href="<?php echo WPZOOM_Shortcodes_Init::$assets_path. '/css/shortcodes.css'; ?>" media="all" />
-    <link rel="stylesheet" type="text/css" href="<?php echo WPZOOM_Shortcodes_Init::$assets_path. '/css/font-awesome.min.css'; ?>" media="all" />
+    <link rel="stylesheet" type="text/css" href="<?php echo WPZOOM_Shortcodes_Plugin_Init::$assets_path. '/css/shortcodes.css'; ?>" media="all" />
+    <link rel="stylesheet" type="text/css" href="<?php echo WPZOOM_Shortcodes_Plugin_Init::$assets_path. '/css/font-awesome.min.css'; ?>" media="all" />
     <style>
         .post  { margin: -5px 0 0 0; }
         .shortcode-typography { display: block; margin-top: 20px; }
