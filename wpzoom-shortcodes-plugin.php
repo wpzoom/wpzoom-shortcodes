@@ -1,13 +1,14 @@
 <?php
 /**
- * Plugin Name: WPZOOM SHORTCODES
- * Plugin URI: http://www.wpzoom.com/
- * Description: WPZOOM SHORTCODES.
+ * Plugin Name: WPZOOM Shortcodes
+ * Plugin URI: https://www.wpzoom.com/
+ * Description: A suite of useful shortcodes compatible with any existing themes, not just with WPZOOM themes.
  * Author: WPZOOM
- * Author URI: http://www.wpzoom.com/
+ * Author URI: httpd://www.wpzoom.com/
  * Version: 1.0
+ * Copyright: (c) 2018 WPZOOM
  * License: GPLv2 or later
- * Text Domain: wpzoom-shortcodes-plugin
+ * Text Domain: wpzoom-shortcodes
  * Domain Path: /languages
  */
 
