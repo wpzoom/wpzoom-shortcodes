@@ -3,9 +3,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-if ( class_exists( 'WPZOOM_Shortcodes_Init' ) ){
-	error_log('EXISTSZ FROM PLUGGGINE');
-}
 
 if ( ! class_exists( 'WPZOOM_Shortcodes_Plugin_Init' ) ) {
 	/**
@@ -25,7 +22,7 @@ if ( ! class_exists( 'WPZOOM_Shortcodes_Plugin_Init' ) ) {
 
 		public function __construct() {
 
-			$this->plugin_file                   = dirname( __FILE__ ) . '/social-icons-widget-by-wpzoom.php';
+			$this->plugin_file                          = dirname( __FILE__ ) . '/wpzoom-shortcodes-plugin.php';
 			WPZOOM_Shortcodes_Plugin_Init::$assets_path = plugin_dir_url( $this->plugin_file ) . 'assets';
 
 			// Register the necessary actions on `admin_init`.
