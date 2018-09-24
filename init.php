@@ -22,7 +22,7 @@ if ( ! class_exists( 'WPZOOM_Shortcodes_Plugin_Init' ) ) {
 
 		public function __construct() {
 
-			$this->plugin_file                          = dirname( __FILE__ ) . '/wpzoom-shortcodes-plugin.php';
+			$this->plugin_file                          = dirname( __FILE__ ) . '/wpzoom-shortcodes.php';
 			WPZOOM_Shortcodes_Plugin_Init::$assets_path = plugin_dir_url( $this->plugin_file ) . 'assets';
 
 			// Register the necessary actions on `admin_init`.
