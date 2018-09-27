@@ -39,7 +39,7 @@ if (
 <html <?php language_attributes(); ?>>
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js" ></script>
+    <script type="text/javascript" src="<?php echo WPZOOM_Shortcodes_Plugin_Init::$assets_path. '/js/jquery.min.1.4.3.js'; ?>" ></script>
     <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_uri(); ?>" media="all" />
     <link rel="stylesheet" type="text/css" href="<?php echo WPZOOM_Shortcodes_Plugin_Init::$assets_path. '/css/shortcodes.css'; ?>" media="all" />
     <link rel="stylesheet" type="text/css" href="<?php echo WPZOOM_Shortcodes_Plugin_Init::$assets_path. '/css/font-awesome.min.css'; ?>" media="all" />
