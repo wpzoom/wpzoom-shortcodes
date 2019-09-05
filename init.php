@@ -28,19 +28,8 @@ if ( ! class_exists( 'WPZOOM_Shortcodes_Plugin_Init' ) ) {
 			// Register the necessary actions on `admin_init`.
 			add_action( 'admin_init', array( &$this, 'init' ) );
 
-			$this->disable_framework_shortcodes_module();
 			// `wp_ajax_*` is only run for logged users.
 			add_action( 'wp_ajax_wpz_check_url_action', array( &$this, 'ajax_action_check_url' ) );
-		}
-
-		public function disable_framework_shortcodes_module() {
-			if ( get_option( 'wpzoom_framework_shortcodes_enable' ) === 'on' ) {
-				update_option( 'wpzoom_framework_shortcodes_enable', 'off' );
-			}
-
-			if ( get_option( 'wpzoom_framework_wzslider_enable' ) === 'on' ) {
-				update_option( 'wpzoom_framework_wzslider_enable', 'off' );
-			}
 		}
 
 		public function init() {
