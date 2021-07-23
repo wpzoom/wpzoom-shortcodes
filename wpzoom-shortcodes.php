@@ -5,8 +5,8 @@
  * Description: A suite of useful shortcodes compatible with any existing themes, not just with WPZOOM themes.
  * Author: WPZOOM
  * Author URI: httpd://www.wpzoom.com/
- * Version: 1.0
- * Copyright: (c) 2018 WPZOOM
+ * Version: 1.0.1
+ * Copyright: (c) 2019 WPZOOM
  * License: GPLv2 or later
  * Text Domain: wpzoom-shortcodes
  * Domain Path: /languages
