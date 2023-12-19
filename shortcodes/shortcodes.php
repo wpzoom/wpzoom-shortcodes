@@ -15,6 +15,8 @@ if ( ! function_exists( "wpz_remove_wpautop" ) ) {
 		$content = do_shortcode( shortcode_unautop( $content ) );
 		$content = preg_replace( '#^<\/p>|^<br \/>|<p>$#', '', $content );
 
+		$content = wp_kses_post( $content );
+
 		return $content;
 	}
 }
