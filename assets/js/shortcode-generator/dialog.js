@@ -668,7 +668,7 @@ var wpzDialogHelper = {
         });
 
         if (wpzShortcodeMeta.customMakeShortcode) return wpzShortcodeMeta.customMakeShortcode(a);
-        var c = a.content ? HtmlSanitizer.SanitizeHtml( a.content ) : wpzShortcodeMeta.defaultContent,
+        var c = a.content ? HtmlSanitizer.SanitizeHtml( a.content ) : HtmlSanitizer.SanitizeHtml( wpzShortcodeMeta.defaultContent ),
             f = "";
         for (var d in a) {
             var g = a[d];
