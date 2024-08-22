@@ -4,10 +4,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+
 if ( ! class_exists( 'WPZOOM_Shortcodes_Plugin_Init' ) ) {
+	
 	/**
 	 * Shortcodes generator initializator.
 	 */
+	#[AllowDynamicProperties]
 	class WPZOOM_Shortcodes_Plugin_Init {
 
 		/**
