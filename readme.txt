@@ -2,9 +2,9 @@
 Contributors: WPZOOM, ciorici
 Donate link: https://www.wpzoom.com/
 Tags: shortcodes, tabs, slideshow, buttons, icons, columns, generator, box, wpzoom
-Requires at least: 4.6
-Requires PHP: 5.6
-Tested up to: 6.4
+Requires at least: 6.0
+Requires PHP: 7.4
+Tested up to: 6.6
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -64,6 +64,9 @@ In Gutenberg shortcodes can be added only when using the Classic Editor block.
 
 
 == Changelog ==
+
+= 1.0.4 =
+* Minor bug fixes
 
 = 1.0.3 =
 * Minor bug fixes
