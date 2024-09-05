@@ -65,6 +65,9 @@ In Gutenberg shortcodes can be added only when using the Classic Editor block.
 
 == Changelog ==
 
+= 1.0.5 =
+* Minor bug fixes
+
 = 1.0.4 =
 * Minor bug fixes
 
