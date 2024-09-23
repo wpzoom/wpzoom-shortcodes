@@ -51,7 +51,7 @@ if ( ! function_exists( "wpz_plugin_shortcode_box" ) ) {
 			$custom = ' style="padding-left:50px;background-image:url( ' . $icon . ' ); background-repeat:no-repeat; background-position:20px 45%;"';
 		}
 
-		return '<div class="wpz-sc-box ' . $type . ' ' . $size . ' ' . $style . ' ' . $border . '"' . $custom . '>' . do_shortcode( wpz_remove_wpautop( $content ) ) . '</div>';
+		return '<div class="wpz-sc-box ' . esc_attr( $type ) . ' ' . esc_attr( $size ) . ' ' . esc_attr( $style ) . ' ' . esc_attr( $border ) . '"' . esc_attr( $custom ) . '>' . do_shortcode( wpz_remove_wpautop( $content ) ) . '</div>';
 	}
 }
 
@@ -121,9 +121,9 @@ if ( ! function_exists( "wpz_plugin_shortcode_button" ) ) {
 
 		if ( $icon ) {
 			$icon_class = sprintf( 'fa fa-%s', $icon );
-			$output     = '<a ' . $window . 'href="' . esc_attr( $link ) . '"class="wpz-sc-button' . esc_attr( $class_output ) . '" ' . $color_output . '><span><i class="' . esc_attr( $icon_class ) . '" style="padding-right:6px;"></i>' . wpz_remove_wpautop( $content ) . '</span></a>';
+			$output     = '<a ' . $window . 'href="' . esc_url( $link ) . '"class="wpz-sc-button' . esc_attr( $class_output ) . '" ' . $color_output . '><span><i class="' . esc_attr( $icon_class ) . '" style="padding-right:6px;"></i>' . wpz_remove_wpautop( $content ) . '</span></a>';
 		} else {
-			$output = '<a ' . $window . 'href="' . esc_attr( $link ) . '"class="wpz-sc-button' . esc_attr( $class_output ) . '" ' . $color_output . '><span class="wpz-' . esc_attr( $style ) . '">' . wpz_remove_wpautop( $content ) . '</span></a>';
+			$output = '<a ' . $window . 'href="' . esc_url( $link ) . '"class="wpz-sc-button' . esc_attr( $class_output ) . '" ' . $color_output . '><span class="wpz-' . esc_attr( $style ) . '">' . wpz_remove_wpautop( $content ) . '</span></a>';
 		}
 
 		return $output;
@@ -471,7 +471,7 @@ if ( ! function_exists( "wpz_plugin_shortcode_ilink" ) ) {
 			$custom_icon = 'style="background:url( ' . $icon . ') no-repeat left 40%;"';
 		}
 
-		return '<span class="wpz-sc-ilink"><a class="' . $style . '" href="' . $url . '" ' . $custom_icon . '>' . wpz_remove_wpautop( $content ) . '</a></span>';
+		return '<span class="wpz-sc-ilink"><a class="' . esc_attr( $style ) . '" href="' . esc_url( $url ) . '" ' . esc_attr( $custom_icon ) . '>' . wpz_remove_wpautop( $content ) . '</a></span>';
 	}
 }
 
@@ -487,7 +487,7 @@ if ( ! function_exists( "wpz_plugin_shortcode_unorderedlist" ) ) {
 
 		extract( shortcode_atts( $defaults, $atts ) );
 
-		return '<div class="shortcode-unorderedlist ' . $style . '">' . do_shortcode( $content ) . '</div>' . "\n";
+		return '<div class="shortcode-unorderedlist ' . esc_attr( $style ) . '">' . do_shortcode( $content ) . '</div>' . "\n";
 
 	} // End wpz_plugin_shortcode_unorderedlist()
 }
@@ -504,7 +504,7 @@ if ( ! function_exists( "wpz_plugin_shortcode_orderedlist" ) ) {
 
 		extract( shortcode_atts( $defaults, $atts ) );
 
-		return '<div class="shortcode-orderedlist ' . $style . '">' . do_shortcode( $content ) . '</div>' . "\n";
+		return '<div class="shortcode-orderedlist ' . esc_attr( $style ) . '">' . do_shortcode( $content ) . '</div>' . "\n";
 
 	} // End wpz_plugin_shortcode_orderedlist()
 }
