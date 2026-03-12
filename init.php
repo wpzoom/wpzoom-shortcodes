@@ -51,18 +51,18 @@ if ( ! class_exists( 'WPZOOM_Shortcodes_Plugin_Init' ) ) {
 				add_action( 'wp_ajax_zoom_shortcodes_ajax_preview', array( $this, 'ajax_preview' ) );
 
 				// Register the colourpicker JavaScript.
-				wp_register_script( 'wpz-colourpicker', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/js/colorpicker.js', array( 'jquery' ), '3.6', true ); // Loaded into the footer.
+				wp_register_script( 'wpz-colourpicker', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/js/colorpicker.js', array( 'jquery' ), WPZOOM_SHORTCODE_VERSION, true ); // Loaded into the footer.
 				wp_enqueue_script( 'wpz-colourpicker' );
 
 				// Register the colourpicker CSS.
-				wp_register_style( 'wpz-colourpicker', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/colorpicker.css' );
+				wp_register_style( 'wpz-colourpicker', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/colorpicker.css', array(), WPZOOM_SHORTCODE_VERSION );
 				wp_enqueue_style( 'wpz-colourpicker' );
 
 				// Register the custom CSS styles.
-				wp_register_style( 'wpz-shortcode-generator', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/shortcode-generator.css' );
+				wp_register_style( 'wpz-shortcode-generator', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/shortcode-generator.css', array(), WPZOOM_SHORTCODE_VERSION );
 				wp_enqueue_style( 'wpz-shortcode-generator' );
 
-				wp_enqueue_style( 'zoom-font-awesome', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/font-awesome.min.css' );
+				wp_enqueue_style( 'zoom-font-awesome', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/font-awesome.min.css', array(), WPZOOM_SHORTCODE_VERSION );
 			}
 		}
 
@@ -110,7 +110,7 @@ if ( ! class_exists( 'WPZOOM_Shortcodes_Plugin_Init' ) ) {
 				$suffix = '.3.8';
 			}
 
-			$plugins['wpzoomShortcodes'] = WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/js/shortcode-generator/editor-plugin' . $suffix . '.js';
+			$plugins['wpzoomShortcodes'] = add_query_arg( 'ver', WPZOOM_SHORTCODE_VERSION, WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/js/shortcode-generator/editor-plugin' . $suffix . '.js' );
 
 			return $plugins;
 		}

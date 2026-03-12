@@ -70,4 +70,5 @@ label.wpz-required span.required {padding: 0 0 0 2px; margin-top: -4px; font-siz
 
 .mce-ico.mce-i-wpz-shortcode-icon {
     background: url('../images/shortcodes/icon.png') no-repeat 1px 2px;
+    background-size: 16px;
 }

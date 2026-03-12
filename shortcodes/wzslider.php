@@ -117,12 +117,12 @@ class wpz_plugin_wzslider {
 	}
 
 	static public function loadStatic() {
-		wp_enqueue_script( 'galleria', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/js/galleria.js', array( 'jquery' ), null, true );
-		wp_enqueue_script( 'wzslider', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/js/wzslider.js', array( 'jquery' ), null, true );
+		wp_enqueue_script( 'galleria', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/js/galleria.js', array( 'jquery' ), WPZOOM_SHORTCODE_VERSION, true );
+		wp_enqueue_script( 'wzslider', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/js/wzslider.js', array( 'jquery' ), WPZOOM_SHORTCODE_VERSION, true );
 	}
 
 	static public function loadStyles() {
-		wp_register_style( 'wzslider', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/wzslider.css' );
+		wp_register_style( 'wzslider', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/wzslider.css', array(), WPZOOM_SHORTCODE_VERSION );
 		wp_enqueue_style( 'wzslider' );
 	}
 
@@ -194,7 +194,7 @@ function wpz_plugin_register_slider_button( $buttons ) {
 }
 
 function wpz_plugin_add_slider_tinymce_plugin( $plugin_array ) {
-	$plugin_array['wzslider'] = WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/js/wzslider_button.js';
+	$plugin_array['wzslider'] = add_query_arg( 'ver', WPZOOM_SHORTCODE_VERSION, WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/js/wzslider_button.js' );
 
 	return $plugin_array;
 }

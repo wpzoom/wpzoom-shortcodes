@@ -55,7 +55,13 @@ var wpzDialogHelper = {
         if (wpzSelectedShortcodeType) {
 
             var a = this;
-            jQuery.getScript(shortcode_generator_url + "shortcodes/" + wpzSelectedShortcodeType + ".js", function () {
+            var shortcodeScriptUrl = shortcode_generator_url + "shortcodes/" + wpzSelectedShortcodeType + ".js";
+
+            if (typeof shortcode_generator_ver !== "undefined" && shortcode_generator_ver) {
+                shortcodeScriptUrl += "?ver=" + encodeURIComponent(shortcode_generator_ver);
+            }
+
+            jQuery.getScript(shortcodeScriptUrl, function () {
                 a.initializeDialog();
 
                 // Set the default content to the highlighted text, for certain shortcode types.

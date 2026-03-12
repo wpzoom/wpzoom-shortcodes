@@ -41,11 +41,17 @@ wpzShortcodeMeta={
 
         for ( var i = 0; i < a.numTabs; i++ ) {
             var currentField = 'tle_' + ( i + 1 );
+            var currentTitle = b[currentField];
 
-            if ( b[currentField] == '' ) {
+            if ( typeof currentTitle !== 'string' ) {
+                currentTitle = '';
+            }
+
+            currentTitle = jQuery.trim( currentTitle );
+
+            if ( currentTitle === '' ) {
                 tabTitles.push( 'Tab ' + ( i + 1 ) );
             } else {
-                var currentTitle = b[currentField];
                 currentTitle = currentTitle.replace( /"/gi, "'" );
                 tabTitles.push( currentTitle );
             }
@@ -67,7 +73,7 @@ wpzShortcodeMeta={
 
         shortcode += '] ';
 
-        for ( var t in tabTitles ) {
+        for ( var t = 0; t < tabTitles.length; t++ ) {
             shortcode += '[tab title="' + tabTitles[t] + '"]' + tabTitles[t] + ' content goes here.[/tab] ';
         }
 

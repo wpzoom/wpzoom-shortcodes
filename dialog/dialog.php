@@ -44,7 +44,7 @@ $support_shortcodes = true;
 </div>
 <div class="clear"></div>
 
-<script type="text/javascript">var shortcode_generator_url = '<?php echo WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/js/shortcode-generator/'; ?>';</script>
+<script type="text/javascript">var shortcode_generator_url = '<?php echo WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/js/shortcode-generator/'; ?>'; var shortcode_generator_ver = '<?php echo esc_attr( WPZOOM_SHORTCODE_VERSION ); ?>';</script>
 <script type="text/javascript" src="<?php echo WPZOOM_Shortcodes_Plugin_Init::$assets_path; ?>/js/shortcode-generator/htmlsanitizer.js?ver=<?php echo esc_attr( WPZOOM_SHORTCODE_VERSION ); ?>"></script>
 <script type="text/javascript" src="<?php echo WPZOOM_Shortcodes_Plugin_Init::$assets_path; ?>/js/shortcode-generator/column-control.js?ver=<?php echo esc_attr( WPZOOM_SHORTCODE_VERSION ); ?>"></script>
 <script type="text/javascript" src="<?php echo WPZOOM_Shortcodes_Plugin_Init::$assets_path; ?>/js/shortcode-generator/tab-control.js?ver=<?php echo esc_attr( WPZOOM_SHORTCODE_VERSION ); ?>"></script>

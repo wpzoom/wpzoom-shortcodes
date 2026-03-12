@@ -25,8 +25,8 @@ add_action( 'wp_enqueue_scripts', 'wpz_enqueue_shortcode_css', 20 );
 if ( !function_exists( "wpz_enqueue_shortcode_css" ) ) {
 // Include shortcodes .css file
 	function wpz_enqueue_shortcode_css() {
-		wp_enqueue_style( 'wpz-shortcodes', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/shortcodes.css' );
-		wp_enqueue_style( 'zoom-font-awesome', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/font-awesome.min.css' );
+		wp_enqueue_style( 'wpz-shortcodes', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/shortcodes.css', array(), WPZOOM_SHORTCODE_VERSION );
+		wp_enqueue_style( 'zoom-font-awesome', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/font-awesome.min.css', array(), WPZOOM_SHORTCODE_VERSION );
 	}
 }
 
@@ -44,14 +44,54 @@ if ( ! function_exists( "wpz_plugin_shortcode_box" ) ) {
 			'icon'   => ''
 		);
 
-		extract( shortcode_atts( $defaults, $atts ) );
+		$atts = shortcode_atts( $defaults, $atts, 'box' );
 
-		$custom = '';
-		if ( $icon ) {
-			$custom = ' style="padding-left:50px;background-image:url( ' . $icon . ' ); background-repeat:no-repeat; background-position:20px 45%;"';
+		$type = sanitize_key( (string) $atts['type'] );
+		if ( ! in_array( $type, array( 'normal', 'info', 'alert', 'tick', 'download', 'note' ), true ) ) {
+			$type = 'normal';
 		}
 
-		return '<div class="wpz-sc-box ' . esc_attr( $type ) . ' ' . esc_attr( $size ) . ' ' . esc_attr( $style ) . ' ' . esc_attr( $border ) . '"' . esc_attr( $custom ) . '>' . do_shortcode( wpz_remove_wpautop( $content ) ) . '</div>';
+		$size = sanitize_key( (string) $atts['size'] );
+		if ( ! in_array( $size, array( '', 'medium', 'large' ), true ) ) {
+			$size = '';
+		}
+
+		$style = sanitize_key( (string) $atts['style'] );
+		if ( ! in_array( $style, array( '', 'rounded' ), true ) ) {
+			$style = '';
+		}
+
+		$border = sanitize_key( (string) $atts['border'] );
+		if ( ! in_array( $border, array( '', 'none', 'full' ), true ) ) {
+			$border = '';
+		}
+
+		$classes = array( 'wpz-sc-box', $type );
+
+		if ( '' !== $size ) {
+			$classes[] = $size;
+		}
+
+		if ( '' !== $style ) {
+			$classes[] = $style;
+		}
+
+		if ( '' !== $border ) {
+			$classes[] = $border;
+		}
+
+		$class_attr = implode( ' ', array_map( 'sanitize_html_class', array_unique( $classes ) ) );
+
+		$custom_style = '';
+		$icon         = trim( (string) $atts['icon'] );
+		if ( '' !== $icon && 'none' !== strtolower( $icon ) ) {
+			$icon_url = esc_url_raw( $icon );
+			if ( '' !== $icon_url ) {
+				$custom_style = ' style="' . esc_attr( 'padding-left:50px;background-image:url(' . esc_url( $icon_url ) . ');background-repeat:no-repeat;background-position:20px 45%;' ) . '"';
+			}
+		}
+
+		return '<div class="' . esc_attr( $class_attr ) . '"' . $custom_style . '>' . do_shortcode( wpz_remove_wpautop( $content ) ) . '</div>';
 	}
 }
 
@@ -438,7 +478,7 @@ if ( ! function_exists( "wpz_plugin_shortcode_tabs_register_js" ) ) {
 		wp_register_script( 'wpz-shortcode-tabs', WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/js/shortcode-tabs.js', array(
 			'jquery',
 			'jquery-ui-tabs'
-		), '20140529', true );
+		), WPZOOM_SHORTCODE_VERSION, true );
 	}
 }
 
