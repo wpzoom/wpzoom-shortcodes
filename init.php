@@ -124,18 +124,25 @@ if ( ! class_exists( 'WPZOOM_Shortcodes_Plugin_Init' ) ) {
 		 */
 		public function ajax_action_check_url() {
 			$hadError = true;
+			$exists   = false;
 
-			$url = isset( $_REQUEST['url'] ) ? $_REQUEST['url'] : '';
+			$url = isset( $_REQUEST['url'] ) ? esc_url_raw( wp_unslash( $_REQUEST['url'] ) ) : '';
 
-			if ( strlen( $url ) > 0 && function_exists( 'get_headers' ) ) {
+			if ( ! empty( $url ) && function_exists( 'get_headers' ) ) {
 				$file_headers = @get_headers( $url );
 				$exists       = $file_headers && $file_headers[0] != 'HTTP/1.1 404 Not Found';
 				$hadError     = false;
 			}
 
-			echo '{ "exists": ' . ( $exists ? '1' : '0' ) . ( $hadError ? ', "error" : 1 ' : '' ) . ' }';
+			$response = array(
+				'exists' => $exists ? 1 : 0,
+			);
 
-			die();
+			if ( $hadError ) {
+				$response['error'] = 1;
+			}
+
+			wp_send_json( $response );
 		}
 	}
 

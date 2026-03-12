@@ -10,7 +10,7 @@ if ( function_exists( 'add_image_size' ) ) {
 
 class wpz_plugin_wzslider {
 	public static $atts;
-	public static $scriptAtts;
+	public static $scriptAtts = array();
 
 	public static $galleries = array();
 
@@ -31,39 +31,33 @@ class wpz_plugin_wzslider {
 
 		$atts = shortcode_atts( $default_atts, $atts );
 
-		if ( $atts['height'] != '500' ) {
-			self::$scriptAtts .= "height: {$atts['height']},";
-		} else {
-			self::$scriptAtts .= "height: 500,";
+		$height     = absint( $atts['height'] );
+		$interval   = absint( $atts['interval'] );
+		$show_info  = 'false' !== strtolower( (string) $atts['info'] );
+		$lightbox   = 'false' !== strtolower( (string) $atts['lightbox'] );
+		$autoplay   = 'false' !== strtolower( (string) $atts['autoplay'] );
+		$transition = sanitize_text_field( (string) $atts['transition'] );
+
+		if ( 0 === $height ) {
+			$height = 500;
 		}
 
-		if ( $atts['info'] != 'false' ) {
-			self::$scriptAtts .= "showInfo: true,";
-		} else {
-			self::$scriptAtts .= "showInfo: false,";
+		if ( 0 === $interval ) {
+			$interval = 3000;
 		}
 
-		if ( $atts['lightbox'] != 'true' ) {
-			self::$scriptAtts .= "clicknext: true,";
+		if ( '' === $transition ) {
+			$transition = 'fade';
 		}
 
-		if ( $atts['lightbox'] != 'false' ) {
-			self::$scriptAtts .= "lightbox: true,";
-		} else {
-			self::$scriptAtts .= "lightbox: false,";
-		}
-
-		if ( $atts['autoplay'] != 'false' ) {
-			self::$scriptAtts .= "autoplay: {$atts['interval']},";
-		} else {
-			self::$scriptAtts .= "autoplay: false,";
-		}
-
-		if ( $atts['transition'] != 'fade' ) {
-			self::$scriptAtts .= "transition: {$atts['transition']}";
-		} else {
-			self::$scriptAtts .= "transition: 'fade'";
-		}
+		self::$scriptAtts = array(
+			'height'     => $height,
+			'showInfo'   => $show_info,
+			'clicknext'  => ! $lightbox,
+			'lightbox'   => $lightbox,
+			'autoplay'   => $autoplay ? $interval : false,
+			'transition' => $transition,
+		);
 
 		$exclude = array_map( 'intval', explode( ',', $atts['exclude'] ) );
 
@@ -80,7 +74,7 @@ class wpz_plugin_wzslider {
 		$attachments = get_posts( $args );
 
 		if ( $attachments ) {
-			$content = '<div id="galleria-' . $post->ID . '">';
+			$content = '<div id="galleria-' . absint( $post->ID ) . '">';
 
 			foreach ( $attachments as $attachment ) {
 				if ( in_array( $attachment->ID, $exclude ) ) {
@@ -99,7 +93,14 @@ class wpz_plugin_wzslider {
 				$alt   = $attachment->post_content;
 				$title = apply_filters( 'the_title', $attachment->post_title );
 
-				$content .= '<a href="' . $url . '"><img title="' . $title . '" alt="' . $alt . '" src="' . $thumb . '" data-big="' . $big . '"></a>';
+				$content .= sprintf(
+					'<a href="%1$s"><img title="%2$s" alt="%3$s" src="%4$s" data-big="%5$s"></a>',
+					esc_url( $url ),
+					esc_attr( $title ),
+					esc_attr( $alt ),
+					esc_url( $thumb ),
+					esc_url( $big )
+				);
 			}
 
 			$content .= '</div>';
@@ -110,7 +111,7 @@ class wpz_plugin_wzslider {
 			"options" => self::$scriptAtts
 		);
 
-		self::$scriptAtts = "";
+		self::$scriptAtts = array();
 		self::$atts       = "";
 
 		return $content;
@@ -127,18 +128,17 @@ class wpz_plugin_wzslider {
 	}
 
 	static public function galleriaScript() {
-		$script = '<script>(function($){$(document).ready(function(){';
+		$script = '(function($){$(document).ready(function(){';
 
 		foreach ( self::$galleries as $galleria ) {
-			$id      = $galleria['id'];
+			$id      = absint( $galleria['id'] );
 			$options = $galleria['options'];
-			$script .= "$('#galleria-$id').galleria({{$options}});";
+			$script .= 'jQuery(' . wp_json_encode( '#galleria-' . $id ) . ').galleria(' . wp_json_encode( $options ) . ');';
 		}
 
-		$script .= '});})(jQuery);</script>';
+		$script .= '});})(jQuery);';
 
-		// fire
-		echo $script;
+		wp_add_inline_script( 'wzslider', $script );
 	}
 
 	static public function check( $posts ) {

@@ -39,10 +39,10 @@ if (
 <html <?php language_attributes(); ?>>
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
-    <script type="text/javascript" src="<?php echo WPZOOM_Shortcodes_Plugin_Init::$assets_path. '/js/jquery.min.1.4.3.js'; ?>" ></script>
-    <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_uri(); ?>" media="all" />
-    <link rel="stylesheet" type="text/css" href="<?php echo WPZOOM_Shortcodes_Plugin_Init::$assets_path. '/css/shortcodes.css'; ?>" media="all" />
-    <link rel="stylesheet" type="text/css" href="<?php echo WPZOOM_Shortcodes_Plugin_Init::$assets_path. '/css/font-awesome.min.css'; ?>" media="all" />
+    <script type="text/javascript" src="<?php echo esc_url( WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/js/jquery.min.1.4.3.js' ); ?>" ></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo esc_url( get_stylesheet_uri() ); ?>" media="all" />
+    <link rel="stylesheet" type="text/css" href="<?php echo esc_url( WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/shortcodes.css' ); ?>" media="all" />
+    <link rel="stylesheet" type="text/css" href="<?php echo esc_url( WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/font-awesome.min.css' ); ?>" media="all" />
     <style>
         .post  { margin: -5px 0 0 0; }
         .shortcode-typography { display: block; margin-top: 20px; }
@@ -50,7 +50,7 @@ if (
 </head>
 <body>
 
-<?php echo do_shortcode($shortcode); ?>
+<?php echo wp_kses_post( do_shortcode( $shortcode ) ); ?>
 
 <script type="text/javascript">
     jQuery( '#wpz-preview h3:first', window.parent.document).removeClass('wpz-loading');
