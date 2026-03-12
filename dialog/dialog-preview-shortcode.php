@@ -1,10 +1,13 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if (
     ! class_exists( 'WPZOOM_Shortcodes_Plugin_Init' )
  || ! current_user_can( 'edit_posts' )
- || ! isset( $_GET['shortcode'] )
 ) {
-    die();
+    exit;
 }
 
 $valid_shortcodes = array(
@@ -18,31 +21,41 @@ $valid_shortcodes = array(
 );
 
 
-// WordPress automatically adds slashes to quotes
-// http://stackoverflow.com/questions/3812128/although-magic-quotes-are-turned-off-still-escaped-strings
-$shortcode = stripslashes( $_GET['shortcode'] );
+if ( ! isset( $shortcode ) || ! is_string( $shortcode ) || '' === trim( $shortcode ) ) {
+	return false;
+}
 
 $regex = get_shortcode_regex();
-$code = trim( urldecode( $shortcode ) );
+$code  = trim( $shortcode );
 preg_match( "/$regex/s", $code, $matches );
 $shortcode_name = isset( $matches[2] ) ? $matches[2] : '';
 
 if (
       empty( $shortcode_name )
- || ! in_array( $shortcode_name, $valid_shortcodes )
+ || ! in_array( $shortcode_name, $valid_shortcodes, true )
 ) {
     return false;
 }
+
+$assets_path = WPZOOM_Shortcodes_Plugin_Init::$assets_path;
+
+wp_register_script( 'wpz-shortcode-preview-jquery', $assets_path . '/js/jquery.min.1.4.3.js', array(), WPZOOM_SHORTCODE_VERSION, false );
+wp_enqueue_script( 'wpz-shortcode-preview-jquery' );
+
+wp_register_style( 'wpz-shortcode-preview-theme-style', get_stylesheet_uri(), array(), null );
+wp_register_style( 'wpz-shortcode-preview-shortcodes', $assets_path . '/css/shortcodes.css', array(), WPZOOM_SHORTCODE_VERSION );
+wp_register_style( 'wpz-shortcode-preview-font-awesome', $assets_path . '/css/font-awesome.min.css', array(), WPZOOM_SHORTCODE_VERSION );
+wp_enqueue_style( 'wpz-shortcode-preview-theme-style' );
+wp_enqueue_style( 'wpz-shortcode-preview-shortcodes' );
+wp_enqueue_style( 'wpz-shortcode-preview-font-awesome' );
 
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
-    <script type="text/javascript" src="<?php echo esc_url( WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/js/jquery.min.1.4.3.js' ); ?>" ></script>
-    <link rel="stylesheet" type="text/css" href="<?php echo esc_url( get_stylesheet_uri() ); ?>" media="all" />
-    <link rel="stylesheet" type="text/css" href="<?php echo esc_url( WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/shortcodes.css' ); ?>" media="all" />
-    <link rel="stylesheet" type="text/css" href="<?php echo esc_url( WPZOOM_Shortcodes_Plugin_Init::$assets_path . '/css/font-awesome.min.css' ); ?>" media="all" />
+    <?php wp_print_scripts( array( 'wpz-shortcode-preview-jquery' ) ); ?>
+    <?php wp_print_styles( array( 'wpz-shortcode-preview-theme-style', 'wpz-shortcode-preview-shortcodes', 'wpz-shortcode-preview-font-awesome' ) ); ?>
     <style>
         .post  { margin: -5px 0 0 0; }
         .shortcode-typography { display: block; margin-top: 20px; }

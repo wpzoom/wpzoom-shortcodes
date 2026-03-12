@@ -739,7 +739,7 @@ var wpzDialogHelper = {
 
         jQuery(a).hasClass( "wpz-validation-marker") && this.validateLinkFor(a);
         jQuery( "#wpz-preview h3:first").addClass( "wpz-loading" );
-        jQuery( "#wpz-preview-iframe").attr( "src", ajaxurl + '?action=zoom_shortcodes_ajax_preview&shortcode=' + encodeURIComponent(this.makeShortcode()) + "&font=" + fontValue )
+        jQuery( "#wpz-preview-iframe").attr( "src", ajaxurl + '?action=zoom_shortcodes_ajax_preview&shortcode=' + encodeURIComponent(this.makeShortcode()) + "&font=" + fontValue + "&nonce=" + encodeURIComponent(wpz_dialog_nonce) )
     },
 
     validateLinkFor: function (a) {
@@ -750,10 +750,12 @@ var wpzDialogHelper = {
             b.addClass( "wpz-validating" );
             jQuery.ajax({
                 url: ajaxurl,
+                type: "POST",
                 dataType: "json",
                 data: {
                     action: "wpz_check_url_action",
-                    url: a
+                    url: a,
+                    nonce: wpz_dialog_nonce
                 },
                 error: function () {
                     b.removeClass( "wpz-validating")

@@ -78,6 +78,10 @@ if ( ! class_exists( 'WPZOOM_Shortcodes_Plugin_Init' ) ) {
 		 * Shortcodes preview for dialog window.
 		 */
 		public function ajax_preview() {
+			check_ajax_referer( 'wpz_shortcodes_dialog', 'nonce' );
+
+			$shortcode = isset( $_REQUEST['shortcode'] ) ? wp_kses_post( wp_unslash( $_REQUEST['shortcode'] ) ) : '';
+
 			require_once dirname( __FILE__ ) . '/dialog/dialog-preview-shortcode.php';
 			die();
 		}
@@ -123,10 +127,12 @@ if ( ! class_exists( 'WPZOOM_Shortcodes_Plugin_Init' ) ) {
 		 * The client recieves <code>-1</code> in that case.
 		 */
 		public function ajax_action_check_url() {
+			check_ajax_referer( 'wpz_shortcodes_dialog', 'nonce' );
+
 			$hadError = true;
 			$exists   = false;
 
-			$url = isset( $_REQUEST['url'] ) ? esc_url_raw( wp_unslash( $_REQUEST['url'] ) ) : '';
+			$url = isset( $_POST['url'] ) ? esc_url_raw( wp_unslash( $_POST['url'] ) ) : '';
 
 			if ( ! empty( $url ) && function_exists( 'get_headers' ) ) {
 				$file_headers = @get_headers( $url );

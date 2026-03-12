@@ -1,11 +1,11 @@
 === WPZOOM Shortcodes ===
 Contributors: WPZOOM, ciorici
 Donate link: https://www.wpzoom.com/
-Tags: shortcodes, tabs, slideshow, buttons, icons, columns, generator, box, wpzoom
+Tags: shortcodes, tabs, slideshow, buttons, columns
 Requires at least: 6.0
 Requires PHP: 7.4
 Tested up to: 6.9
-Stable tag: trunk
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,9 +13,6 @@ A suite of useful shortcodes compatible with any existing themes, not just with 
 
 
 == Description ==
-
-**[View Shortcodes Demo](http://demo.wpzoom.com/foodica/shortcodes)**
-**[View Slideshow Shortcode Demo](http://demo.wpzoom.com/originmag/2015/08/07/brabus-bullit-c-class-coupe/)**
 
 A suite of useful shortcodes compatible with any existing themes, not just with WPZOOM themes.
 
@@ -43,7 +40,6 @@ Simply search for the plugin name via the **Plugins -> Add New** dialog and clic
 
 After installation you can add shortcodes by clicking on the new icons appearing in the Classic Editor (Visual Mode): most of the shortcodes are added by clicking the "W" icon in the editor, while the Slideshow Shortcode can be added by clicking on the small icon with a landscape.
 Shortcodes work also in Gutenberg, and are available only in the Classic Editor block.
-
 
 
 == Frequently Asked Questions ==

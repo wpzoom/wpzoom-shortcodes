@@ -410,7 +410,7 @@ if ( ! function_exists( "wpz_plugin_shortcode_tabs" ) ) {
 
 		// If no unique ID is set, set the ID as a random number between 1 and 100 (to make sure each tab group is unique).
 		if ( $id == '' ) {
-			$id = rand( 1, 100 );
+			$id = wp_rand( 1, 100 );
 		}
 		if ( $css != '' ) {
 			$css = ' ' . $css;
